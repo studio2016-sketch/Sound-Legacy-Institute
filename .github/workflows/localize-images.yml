@@ -1,0 +1,35 @@
+name: Import approved site images
+on:
+  push:
+    branches: [main]
+    paths:
+      - '*.html'
+      - 'scripts/localize_images.py'
+      - '.github/workflows/localize-images.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: sound-legacy-images
+  cancel-in-progress: false
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download and localize existing approved image URLs
+        run: python3 scripts/localize_images.py
+      - name: Commit local images and HTML references
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add images/ '*.html'
+          if ! git diff --cached --quiet; then
+            git commit -m "Store site photography locally and update references"
+            git push
+          fi
