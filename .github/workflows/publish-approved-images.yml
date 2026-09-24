@@ -3,8 +3,8 @@ on:
   push:
     branches: [main]
     paths:
-      - 'images/sound-legacy-mentorship.jpg'
-      - 'images/sound-legacy-student-performance.jpg'
+      - 'images/D03C9C3A-D955-4724-BF6F-272ED221DB71.png'
+      - 'images/A0ED085F-D25A-4953-8ECC-2F9093648688.png'
       - 'scripts/publish_approved_images.py'
   workflow_dispatch:
 permissions:
