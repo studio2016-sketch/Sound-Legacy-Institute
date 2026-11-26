@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://www.soundlegacyinstitute.com/sitemap.xml
+Sitemap: https://soundlegacyinstitute.com/sitemap.xml
